@@ -1,7 +1,7 @@
 import json
 from openai import OpenAI
 
-client = OpenAI(api_key="[Insert API key here]")
+client = OpenAI(api_key="[insert API key here]")
 
 # Classifies emails using OpenAI API with file provided below
 def classify_emails(file):
@@ -12,8 +12,18 @@ def classify_emails(file):
 
     for email in emails:
        prompt = f"""
-       Classify each email as Phishing or Benign. Return the label and a brief explanation.
+       You are an email security classifier. 
+       For each email, return the result in the following format:
+       
+       Label: <phishing or benign>
+       Intent: <intent>
+       Technique: <technique>
+       Target: <target>
+       
+       Return exactly in this format with no extra text.
 
+       Here is the following email to classify:
+       
        Email:
        From: {email["spoofed_sender"]}
        Subject: {email["subject"]}
@@ -21,17 +31,18 @@ def classify_emails(file):
 """
        
        response = client.responses.create(
-          model="gpt-4o-mini",
+          model="ft:gpt-4.1-nano-2025-04-14:personal:base:DNcK5Fg7",
           input=prompt)
        
        print(f"Email #{counter}")
        counter += 1
        print(f"Subject: {email['subject']}")
-       print(f"OpenAI Response: {response.output_text}")
+       print(f"{response.output_text}")
        print(f"")
-       print("-" * 200)
+       print("-" * 100)
        print(f"")
 
-    print(f"Classification Complete")
+    print(f"CLASSIFICATION COMPLETE")
+    print(f"")
 
 classify_emails("datasets/testingData.json")
