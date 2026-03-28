@@ -1,7 +1,11 @@
 import json
 from openai import OpenAI
 
+#API key for responses API
 client = OpenAI(api_key="[insert API key here]")
+
+# Model used by responses API
+modelName = "[insert model name here]"
 
 # Classifies emails using OpenAI API with file provided below
 def classify_emails(file):
@@ -9,6 +13,9 @@ def classify_emails(file):
         emails = json.load(file)
 
     counter = 1
+
+    print(f"Model Name: {modelName}")
+    print(f"")
 
     for email in emails:
        prompt = f"""
@@ -31,7 +38,7 @@ def classify_emails(file):
 """
        
        response = client.responses.create(
-          model="ft:gpt-4.1-nano-2025-04-14:personal:base:DNcK5Fg7",
+          model=modelName,
           input=prompt)
        
        print(f"Email #{counter}")
