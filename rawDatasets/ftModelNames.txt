@@ -1,0 +1,11 @@
+Model Names for Fine-tuned Models
+
+Base FT Models
+    4.1 Base: ft:gpt-4.1-2025-04-14:personal:base:DNyVgWd9
+    4.1 Mini: ft:gpt-4.1-mini-2025-04-14:personal:base:DNbybPBd
+    4.1 Nano: ft:gpt-4.1-nano-2025-04-14:personal:base:DNcK5Fg7
+
+Poisoned FT Models
+    4.1 Base:
+    4.1 Mini:
+    4.1 Nano:
