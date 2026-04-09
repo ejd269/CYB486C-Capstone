@@ -5,7 +5,7 @@ client = OpenAI(api_key="[Insert API key here]")
 
 # Creates a dataset for fine-tuning
 dataset = client.files.create(
-    file = open("datasets/finetuneData.jsonl", "rb"),
+    file = open("[Insert training data file path here]", "rb"),
     purpose = "fine-tune",
     expires_after = {
         "anchor": "created_at",
@@ -16,7 +16,8 @@ dataset = client.files.create(
 # Initiates a fine-tuning job
 job = client.fine_tuning.jobs.create(
     training_file = dataset.id,
-    model="gpt-4.1-2025-04-14"
+    model="[Insert model name here]",
+    suffix="[Insert suffix here]"
 )
 
 print(f"Model ID:     {job.id}")
